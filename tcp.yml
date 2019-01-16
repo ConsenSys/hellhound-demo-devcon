@@ -1,0 +1,11 @@
+---
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: tcp-services
+  namespace: kube-system
+data:
+  4222: hellhound/nats:4222
+  8222: hellhound/nats:8222
+  4223: hellhound/nats-ws:4222

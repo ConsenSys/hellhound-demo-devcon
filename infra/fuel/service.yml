@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: fuel
+    app.kubernetes.io/release: "1.0.0"
+  name: fuel
+spec:
+  ports:
+  - name: "fuel-http"
+    port: 4000
+    targetPort: 4000
+  selector:
+    app.kubernetes.io/name: fuel
+    app.kubernetes.io/release: "1.0.0"
+  type: LoadBalancer

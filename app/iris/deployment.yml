@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iris-config
+  labels:
+    app.kubernetes.io/name: iris
+    app.kubernetes.io/release: 1.0.0
+data:
+  JAEGER_AGENT_HOST_PORT: "jaeger-agent:5775"
+  CASSANDRA_HOST: "cassandra"
+  CHAIN_PRIVATE_KEY: "5bdf462af21daf75f436c80eced2e402a6ee3ebcec06bbcb7d99cd4f873082bf"
+  GITLAB_KEY: "15922a759e904d58facd4c373e6bab4363920555cd9dabac888b65e3f9065288"
+  GITLAB_SECRET: "ec1d4c24bcc9871b71df764b43ed2ed96b736800e41438c2c432bd28aed0ef4f"
+  GITLAB_CALLBACK: "http://35.233.95.141/token/oauth/gitlab/callback"
+  GITLAB_REDIRECT_DASHBOARD: "http://dashboard.hellhound.io/DashboardPage" 
+  
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: iris
+  labels:
+    app.kubernetes.io/name: iris
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: iris
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: iris
+        image: "consensyshellhound/iris:v1.2.1"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: iris-config          
+      restartPolicy: Always
+status: {}

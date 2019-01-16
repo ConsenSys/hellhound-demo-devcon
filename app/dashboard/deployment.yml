@@ -1,0 +1,26 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dashboard
+  labels:
+    app.kubernetes.io/name: dashboard
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: dashboard
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: dashboard
+        image: "consensyshellhound/dashboard:v1.7.8"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000   
+      restartPolicy: Always
+status: {}

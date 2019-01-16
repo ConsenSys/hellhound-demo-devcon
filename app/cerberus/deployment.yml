@@ -1,0 +1,325 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cerberus-config
+  labels:
+    app.kubernetes.io/name: cerberus
+    app.kubernetes.io/release: 1.0.0
+data:
+  JAEGER_AGENT_HOST_PORT: "jaeger-agent:5775"
+  NATS_URL: "nats://nats:4222"
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-1
+  labels:
+    app.kubernetes.io/name: cerberus-1
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-1
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-1
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000001"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-2
+  labels:
+    app.kubernetes.io/name: cerberus-2
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-2
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-2
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000002"
+        - name: CORRUPTED
+          value: "true"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-3
+  labels:
+    app.kubernetes.io/name: cerberus-3
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-3
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-3
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000003"
+        - name: CORRUPTED
+          value: "true"          
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-4
+  labels:
+    app.kubernetes.io/name: cerberus-4
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-4
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-4
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000004"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-5
+  labels:
+    app.kubernetes.io/name: cerberus-5
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-5
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-5
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000005"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-6
+  labels:
+    app.kubernetes.io/name: cerberus-6
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-6
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-6
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000006"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-7
+  labels:
+    app.kubernetes.io/name: cerberus-7
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-7
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-7
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000007"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-8
+  labels:
+    app.kubernetes.io/name: cerberus-8
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-8
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-8
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000008"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-9
+  labels:
+    app.kubernetes.io/name: cerberus-9
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-9
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-9
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000009"
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cerberus-10
+  labels:
+    app.kubernetes.io/name: cerberus-10
+    app.kubernetes.io/release: "1.0.0"
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: cerberus-10
+        app.kubernetes.io/release: "1.0.0"
+    spec:
+      containers:
+      - name: cerberus-10
+        image: "consensyshellhound/cerberus:v1.8.1"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: cerberus-config          
+        env:
+        - name: NODE_ID
+          value: "00000000-0000-0000-0000-000000000010"
+      restartPolicy: Always
+status: {}
